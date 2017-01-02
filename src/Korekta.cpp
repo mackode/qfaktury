@@ -1,5 +1,5 @@
 #include "moc_Korekta.cpp"
-#include <Qt/qdom.h>
+#include <QDomDocument>
 #include <QMessageBox>
 #include <QTextCodec>
 #include <QTextStream>

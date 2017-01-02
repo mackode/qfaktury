@@ -9,7 +9,7 @@
 #include <QDebug>
 #include <QTextCodec>
 #include <QTranslator>
-#include <QMessageBox>
+#include <QtWidgets/QMessageBox>
 #include "config.h"
 
 
@@ -658,9 +658,9 @@ private:
 		dateFormat = "dd/MM/yyyy";
 		fileNameDateFormat = "yyyy-MM-dd";
 
-		QTextCodec::setCodecForCStrings (QTextCodec::codecForName (getCodecName()));
+        //QTextCodec::setCodecForCStrings (QTextCodec::codecForName (getCodecName()));
 		QTextCodec::setCodecForLocale (QTextCodec::codecForName (getCodecName()));
-		QTextCodec::setCodecForTr (QTextCodec::codecForName (getCodecName()));
+        //QTextCodec::setCodecForTr (QTextCodec::codecForName (getCodecName()));
 
 		locale = new QLocale();
 

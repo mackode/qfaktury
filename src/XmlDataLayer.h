@@ -8,7 +8,7 @@
 #ifndef XMLDATALAYER_H_
 #define XMLDATALAYER_H_
 
-#include <Qt/qdom.h>
+#include <QDomDocument>
 
 #include "IDataLayer.h"
 

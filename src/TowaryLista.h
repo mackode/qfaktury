@@ -1,6 +1,6 @@
 #ifndef TowaryLista_H
 #define TowaryLista_H
-#include <QDialog>
+#include <QtWidgets/QDialog>
 #include "Settings.h"
 #include "ProductData.h"
 

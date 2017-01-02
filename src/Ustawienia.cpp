@@ -1,7 +1,7 @@
 #include "moc_Ustawienia.cpp"
 #include <QTextCodec>
 #include <QFileDialog>
-#include <Qt/qdom.h>
+#include <QDomDocument>
 #include <QMessageBox>
 #include <QDesktopServices>
 #include <QUrl>

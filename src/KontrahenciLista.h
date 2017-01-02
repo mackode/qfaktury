@@ -1,7 +1,7 @@
 #ifndef KontrahenciLista_H
 #define KontrahenciLista_H
 #include <QDialog>
-#include <Qt/qdom.h>
+#include <QDomDocument>
 #include <QKeyEvent>
 
 #include "Settings.h"

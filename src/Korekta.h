@@ -1,6 +1,6 @@
 #ifndef Korekta_H
 #define Korekta_H
-#include <QDialog>
+#include <QtWidgets/QDialog>
 
 #include "ui_Faktura.h"
 #include "Faktura.h"

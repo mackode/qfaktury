@@ -7,7 +7,7 @@
 
 #ifndef CUSTOMPAYMENT_H_
 #define CUSTOMPAYMENT_H_
-#include <QDialog>
+#include <QtWidgets/QDialog>
 
 #include "Settings.h"
 #include "CustomPaymData.h"

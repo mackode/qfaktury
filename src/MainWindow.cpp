@@ -5,7 +5,7 @@
 #include <QEvent>
 #include <QMenu>
 #include <QUrl>
-#include <Qt/qdom.h>
+#include <QDomDocument>
 #include <QTextStream>
 #include <QtDebug>
 #include <QDesktopServices>
@@ -113,29 +113,29 @@ void MainWindow::init() {
 	this->setWindowTitle( sett().getVersion(qAppName() ));
 
 	// connect slots
-	connect(actionBug, SIGNAL (activated ()), this, SLOT(reportBug()));
+    connect(actionBug, SIGNAL (triggered(bool)), this, SLOT(reportBug()));
 	connect(applyFiltrBtn, SIGNAL (clicked()), this, SLOT(rereadHist()));
-	connect(plikDane_firmyAction, SIGNAL(activated()), this, SLOT(daneFirmyClick()));
-	connect(plikKoniecAction, SIGNAL(activated()), this, SLOT(close()));
-	connect(kontrahenciDodajAction, SIGNAL(activated()), this, SLOT(kontrClick()));
-	connect(kontrahenciUsunAction, SIGNAL(activated()), this, SLOT(kontrDel()));
-	connect(kontrahenciEdycjaAction, SIGNAL(activated()), this, SLOT(kontrEd()));
-	connect(fakturyDodajAction, SIGNAL(activated()), this, SLOT(newFra()));
-	connect(fakturyUsunAction, SIGNAL(activated()), this, SLOT(delFHist()));
-	connect(fakturyEdAction, SIGNAL(activated()), this, SLOT(editFHist()));
-	connect(fakturyDuplikatAction, SIGNAL(activated()), this, SLOT(newDuplikat()));
-	connect(fakturyBruttoAction, SIGNAL(activated()), this, SLOT(newFBrutto()));
-	connect(fakturyRachunekAction, SIGNAL(activated()), this, SLOT(newFRachunek()));
-	connect(fakturyKorektaAction, SIGNAL(activated()), this, SLOT(newKor()));
-	connect(fakturyPFormaAction, SIGNAL(activated()), this, SLOT(newPForm()));
-	connect(towaryDodajAction, SIGNAL(activated()), this, SLOT(towaryDodaj()));
-	connect(towaryEdycjaAction, SIGNAL(activated()), this, SLOT(towaryEdycja()));
-	connect(towaryUsunAction, SIGNAL(activated()), this, SLOT(towaryUsun()));
-	connect(pomocO_QtAction, SIGNAL(activated()), this, SLOT(aboutQt()));
-	connect(pomocO_programieAction, SIGNAL(activated()), this, SLOT(oProg()));
-	connect(plikUstawieniaAction, SIGNAL(activated()), this, SLOT(settClick()));
+    connect(plikDane_firmyAction, SIGNAL(triggered(bool)), this, SLOT(daneFirmyClick()));
+    connect(plikKoniecAction, SIGNAL(triggered(bool)), this, SLOT(close()));
+    connect(kontrahenciDodajAction, SIGNAL(triggered(bool)), this, SLOT(kontrClick()));
+    connect(kontrahenciUsunAction, SIGNAL(triggered(bool)), this, SLOT(kontrDel()));
+    connect(kontrahenciEdycjaAction, SIGNAL(triggered(bool)), this, SLOT(kontrEd()));
+    connect(fakturyDodajAction, SIGNAL(triggered(bool)), this, SLOT(newFra()));
+    connect(fakturyUsunAction, SIGNAL(triggered(bool)), this, SLOT(delFHist()));
+    connect(fakturyEdAction, SIGNAL(triggered(bool)), this, SLOT(editFHist()));
+    connect(fakturyDuplikatAction, SIGNAL(triggered(bool)), this, SLOT(newDuplikat()));
+    connect(fakturyBruttoAction, SIGNAL(triggered(bool)), this, SLOT(newFBrutto()));
+    connect(fakturyRachunekAction, SIGNAL(triggered(bool)), this, SLOT(newFRachunek()));
+    connect(fakturyKorektaAction, SIGNAL(triggered(bool)), this, SLOT(newKor()));
+    connect(fakturyPFormaAction, SIGNAL(triggered(bool)), this, SLOT(newPForm()));
+    connect(towaryDodajAction, SIGNAL(triggered(bool)), this, SLOT(towaryDodaj()));
+    connect(towaryEdycjaAction, SIGNAL(triggered(bool)), this, SLOT(towaryEdycja()));
+    connect(towaryUsunAction, SIGNAL(triggered(bool)), this, SLOT(towaryUsun()));
+    connect(pomocO_QtAction, SIGNAL(triggered(bool)), this, SLOT(aboutQt()));
+    connect(pomocO_programieAction, SIGNAL(triggered(bool)), this, SLOT(oProg()));
+    connect(plikUstawieniaAction, SIGNAL(triggered(bool)), this, SLOT(settClick()));
 	connect(tabWidget2, SIGNAL(currentChanged(QWidget*)), this, SLOT(tabChanged(QWidget*)));
-	connect(pomocPomocAction, SIGNAL(activated()), this, SLOT(pomoc()));
+    connect(pomocPomocAction, SIGNAL(triggered(bool)), this, SLOT(pomoc()));
 	connect(tableH, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(editFHist()));
 	connect(tableH, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showTableMenuH(QPoint)));
 	connect(tableK, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(kontrEd()));

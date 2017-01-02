@@ -1,7 +1,7 @@
 #ifndef Towary_H
 #define Towary_H
 #include <QDialog>
-#include <Qt/qdom.h>
+#include <QDomDocument>
 #include "IDataLayer.h"
 #include "ProductData.h"
 

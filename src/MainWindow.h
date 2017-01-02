@@ -1,6 +1,6 @@
 #ifndef MainWindow_H
 #define MainWindow_H
-#include <QMainWindow>
+#include <QtWidgets/QMainWindow>
 #include <QKeyEvent>
 #include "Settings.h"
 #include "ui_MainWindow.h"

@@ -1,7 +1,7 @@
 #ifndef KONTRAHENCI_H
 #define KONTRAHENCI_H
 #include <QDialog>
-#include <Qt/qdom.h>
+#include <QDomDocument>
 
 #include "ui_Kontrahenci.h"
 

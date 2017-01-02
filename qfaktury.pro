@@ -6,10 +6,22 @@ TARGET = qfaktury
 DEPENDPATH += .
 INCLUDEPATH += .
 QT += gui \
-    xml
+    xml \
+    printsupport
 CONFIG += debug
 
 # Input
+FORMS += ./ui/CustomPaymentDialog.ui \
+    ./ui/Faktura.ui \
+    ./ui/Kontrahenci.ui \
+    ./ui/KontrahenciLista.ui \
+    ./ui/MainWindow.ui \
+    ./ui/Towary.ui \
+    ./ui/TowaryLista.ui \
+    ./ui/Ustawienia.ui \
+    ./ui/Uzytkownik.ui \
+    ./ui/ZmienIlosc.ui
+
 HEADERS += ./src/XmlDataLayer.h \
     ./src/KontrData.h \
     ./src/IDataLayer.h \
@@ -36,16 +48,7 @@ HEADERS += ./src/XmlDataLayer.h \
     ./src/Ustawienia.h \
     ./src/Uzytkownik.h \
     ./src/ZmienIlosc.h
-FORMS += ./ui/CustomPaymentDialog.ui \
-    ./ui/Faktura.ui \
-    ./ui/Kontrahenci.ui \
-    ./ui/KontrahenciLista.ui \
-    ./ui/MainWindow.ui \
-    ./ui/Towary.ui \
-    ./ui/TowaryLista.ui \
-    ./ui/Ustawienia.ui \
-    ./ui/Uzytkownik.ui \
-    ./ui/ZmienIlosc.ui
+
 SOURCES += ./src/XmlDataLayer.cpp \
     ./src/KontrData.cpp \
     ./src/CustomPaymData.cpp \
@@ -67,11 +70,13 @@ SOURCES += ./src/XmlDataLayer.cpp \
     ./src/Ustawienia.cpp \
     ./src/Uzytkownik.cpp \
     ./src/ZmienIlosc.cpp
+
 RESOURCES += qfaktury.qrc
 MOC_DIR = .moc
 UI_DIR = .ui
 OBJECTS_DIR = .obj
 RCC_DIR = .rcc
+
 TRANSLATIONS += qfaktury_de.ts \
     qfaktury_en.ts \
     qfaktury_pl.ts
@@ -84,6 +89,7 @@ languages.files = *.qm
 desktop.path = /usr/local/share/applications
 desktop.files = *.desktop
 target.path = /usr/local/bin
+
 INSTALLS += target \
     pixmaps \
     css \

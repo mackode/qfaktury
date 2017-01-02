@@ -1,8 +1,9 @@
 #ifndef Faktura_H
 #define Faktura_H
-#include <QDialog>
+#include <QtWidgets/QDialog>
 #include <QDomElement>
 #include <QDomDocument>
+#include <QPrinter>
 
 #include "ConvertAmount.h"
 #include "Settings.h"
