@@ -77,19 +77,19 @@ void Faktura::init() {
 	connect(editTwBtn, SIGNAL(clicked()), this, SLOT(editTowar()));
 	connect(backBtn, SIGNAL(clicked()), this, SLOT(backBtnClick()));
 	connect(closeBtn, SIGNAL(clicked()), this, SLOT(canQuit()));
-        connect(saveBtn, SIGNAL(clicked()), this, SLOT(saveInvoice()));
-        connect(printBtn, SIGNAL(clicked()), this, SLOT(makeInvoice()));
+    connect(saveBtn, SIGNAL(clicked()), this, SLOT(saveInvoice()));
+    connect(printBtn, SIGNAL(clicked()), this, SLOT(makeInvoice()));
 	connect(tableTow, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(editTowar()));
-        connect(tableTow, SIGNAL(itemActivated(QTableWidgetItem *)), this,
+    connect(tableTow, SIGNAL(itemActivated(QTableWidgetItem *)), this,
 				SLOT(tableActivated(QTableWidgetItem *)));
-        connect(tableTow, SIGNAL(itemClicked(QTableWidgetItem *)), this,
+    connect(tableTow, SIGNAL(itemClicked(QTableWidgetItem *)), this,
 				SLOT(tableActivated(QTableWidgetItem *)));
-        connect(additEdit, SIGNAL(textChanged(QString)), this, SLOT(textChanged(QString)));
-        connect(platCombo, SIGNAL(currentIndexChanged (QString)), this, SLOT(payTextChanged(QString)));
-        connect(currCombo, SIGNAL(currentIndexChanged (QString)), this, SLOT(textChanged(QString)));
-        connect(sellingDate, SIGNAL(dateChanged (QDate)), this, SLOT(dateChanged (QDate)));
-        connect(productDate, SIGNAL(dateChanged (QDate)), this, SLOT(dateChanged (QDate)));
-        connect(liabDate, SIGNAL(dateChanged (QDate)), this, SLOT(dateChanged (QDate)));
+    connect(additEdit, SIGNAL(textChanged(QString)), this, SLOT(textChanged(QString)));
+    connect(platCombo, SIGNAL(currentIndexChanged (QString)), this, SLOT(payTextChanged(QString)));
+    connect(currCombo, SIGNAL(currentIndexChanged (QString)), this, SLOT(textChanged(QString)));
+    connect(sellingDate, SIGNAL(dateChanged (QDate)), this, SLOT(dateChanged (QDate)));
+    connect(productDate, SIGNAL(dateChanged (QDate)), this, SLOT(dateChanged (QDate)));
+    connect(liabDate, SIGNAL(dateChanged (QDate)), this, SLOT(dateChanged (QDate)));
 	connect(rabatValue, SIGNAL(valueChanged(int)), this, SLOT(discountChange()));
 	connect(constRab, SIGNAL(stateChanged(int)), this, SLOT(discountConstChange()));
 	connect(addKButton, SIGNAL(clicked()), this, SLOT(kontrClick()));
@@ -704,9 +704,9 @@ void Faktura::makeInvoiceHeadar(bool sellDate, bool breakPage, bool original) {
 	fraStrList += "<tr>";
 		fraStrList += "<td colspan=\"2\" align=\"right\" valign=\"top\"><br>";
 		if (original) {
-		fraStrList += trUtf8("ORYGINAŁ");
+        //fraStrList += trUtf8("ORYGINAŁ");
 		} else {
-		fraStrList += trUtf8("KOPIA");
+        //fraStrList += trUtf8("KOPIA");
 		}
 		fraStrList += "<br></td><td width=\"3%\">&nbsp;</td>";
 	fraStrList += "</tr>";
@@ -871,7 +871,7 @@ void Faktura::makeInvoiceProducts() {
 		// for (int j=1; j<11;++j)
 		// 	qDebug() << j << " : " << tableTow->item(i, j)->text();
 
-		fraStrList += "<tr valign=\"middle\" align=\"center\" class=\"products\">";
+        fraStrList += "<tr valign=\"middle\" align=\"center\">";
 		// lp, nazwa, kod, pkwiu, ilosc, jm, rabat, cena jm., netto, vat, brutto
 		if (sett().value("faktury_pozycje/Lp").toBool())
 			fraStrList += "<td align=\"center\" >" + sett().numberToString(i + 1) + "</td>";
@@ -995,6 +995,13 @@ void Faktura::makeInvoiceFooter() {
 	fraStrList += "<br><br><br><br>";
 
 		fraStrList += "<table width=\"80%\" border=\"0\">";
+        fraStrList += "<tr>";
+            fraStrList += "<td width=\"80%\" align=\"left\"><b>UWAGI:</b></td>";
+        fraStrList += "</tr>";
+        fraStrList += "<tr>";
+            fraStrList += "<td width=\"80%\" align=\"left\">Faktura nie wymaga podpisu wystawcy i odbiorcy.</td>";
+        fraStrList += "</tr>";
+        /*
 		fraStrList += "<tr>";
 			fraStrList += "<td width=\"3%\">&nbsp;</td>";
 			fraStrList += "<td width=\"43%\" align=\"center\"> ";
@@ -1019,11 +1026,11 @@ void Faktura::makeInvoiceFooter() {
 					+ "<br>" + trUtf8(" do odbioru faktury VAT");
 			fraStrList += "</td>";
 		fraStrList += "</tr>";
+        */
 		fraStrList += "</table>";
 
 	fraStrList += "</td></tr>";
 	fraStrList += "</table>";
-
 }
 
 void Faktura::makeInvoiceFooterHtml() {
