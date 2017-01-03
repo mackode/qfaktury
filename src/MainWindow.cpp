@@ -134,7 +134,7 @@ void MainWindow::init() {
     connect(pomocO_QtAction, SIGNAL(triggered(bool)), this, SLOT(aboutQt()));
     connect(pomocO_programieAction, SIGNAL(triggered(bool)), this, SLOT(oProg()));
     connect(plikUstawieniaAction, SIGNAL(triggered(bool)), this, SLOT(settClick()));
-	connect(tabWidget2, SIGNAL(currentChanged(QWidget*)), this, SLOT(tabChanged(QWidget*)));
+    connect(tabWidget2, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)));
     connect(pomocPomocAction, SIGNAL(triggered(bool)), this, SLOT(pomoc()));
 	connect(tableH, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(editFHist()));
 	connect(tableH, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showTableMenuH(QPoint)));
@@ -147,7 +147,7 @@ void MainWindow::init() {
 	connect(tableK, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(mainUpdateStatus(QTableWidgetItem *)));
 	connect(tableT, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(mainUpdateStatus(QTableWidgetItem *)));
 
-	tabChanged(tabWidget2);
+    tabChanged(0);
 
 	readKontr();
 	readHist();
@@ -527,10 +527,7 @@ void MainWindow::mainUpdateStatus(QTableWidgetItem *item) {
 /** Slot which enables/disables menu. It's possible to add/remove goods/customers
  *  only if this is the current tab.
  */
-void MainWindow::tabChanged(QWidget * qwdt) {
-
-	int tabNo = tabWidget2->indexOf(qwdt);
-
+void MainWindow::tabChanged(int tabNo) {
 	// disable Edit and Remove actions _ONLY_
 	switch (tabNo) {
 	case 0: {

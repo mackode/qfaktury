@@ -19,7 +19,7 @@ public:
 	IDataLayer *dl;
 public slots:
 	void tableClear(QTableWidget * tab);
-	void tabChanged(QWidget * aaa);
+    void tabChanged(int tabNo);
 	void rereadHist();
 	void aboutQt();
 	void oProg();
