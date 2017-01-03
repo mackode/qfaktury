@@ -795,17 +795,31 @@ InvoiceData XmlDataLayer::invoiceSelectData(QString name, int type) {
 	QDomElement towar;
 	towar = product.firstChild().toElement();
 
-	static const char *towarColumns[] = { "id", "name", "code", "PKWiU",
+    const int N = 11;
+    static const char *towarColumns[N] = { "id", "name", "code", "PKWiU",
 			"quantity", "quantityType", "discount", "price", "nett",
 			"vatBucket", "gross" };
 
-	// tableTow->setRowCount(towCount);
+    //tableTow->setRowCount(towCount);
 	for (i = 0; i < towCount; ++i) {
-		for (int j = 0; j < int(sizeof(towarColumns) / sizeof(*towarColumns)); j++) {
-			// tableTow->setItem(i, j, new QTableWidgetItem(towar.attribute(
-			//		towarColumns[j])));
-			// qDebug() << towarColumns[j] << towar.attribute(towarColumns[j]);
-		}
+        ProductData product;
+
+        int j = 0;
+        product.setId(towar.attribute(towarColumns[j++]));
+        product.setName(towar.attribute(towarColumns[j++]));
+        product.setCode(towar.attribute(towarColumns[j++]));
+        product.setPkwiu(towar.attribute(towarColumns[j++]));
+        product.setQuantity(towar.attribute(towarColumns[j++]));
+        product.setQuanType(towar.attribute(towarColumns[j++]));
+        product.setDiscount(towar.attribute(towarColumns[j++]));
+        product.setPrice(towar.attribute(towarColumns[j++]));
+        product.setNett(towar.attribute(towarColumns[j++]));
+        product.setVat(towar.attribute(towarColumns[j++]));
+        product.setGross(towar.attribute(towarColumns[j++]));
+
+        o_invData.products[i] = product;
+        //tableTow->setItem(i, j, new QTableWidgetItem(towar.attribute(towarColumns[j])));
+        //qDebug() << towarColumns[j] << towar.attribute(towarColumns[j]);
 		towar = towar.nextSibling().toElement();
 	}
 
@@ -813,6 +827,7 @@ InvoiceData XmlDataLayer::invoiceSelectData(QString name, int type) {
 	QDomElement additional = tmp.toElement();
 	o_invData.additText = additional.attribute("text");
 	int curPayment = sett().value("payments").toString().split("|").indexOf(additional.attribute("paymentType"));
+    o_invData.paymentType = additional.attribute("paymentType");
 
 	if (curPayment == sett().value("payments").toString().split("|").count() - 1) {
 	    // disconnect(platCombo, SIGNAL(currentIndexChanged (QString)), this, SLOT(payTextChanged(QString)));
@@ -829,7 +844,7 @@ InvoiceData XmlDataLayer::invoiceSelectData(QString name, int type) {
 
 		// connect(platCombo, SIGNAL(currentIndexChanged (QString)), this, SLOT(payTextChanged(QString)));
 	} else {
-		// platCombo->setCurrentIndex(curPayment);
+        //platCombo->setCurrentIndex(curPayment);
 	}
 
 	o_invData.liabDate = QDate::fromString(additional.attribute("liabDate"), sett().getDateFormat());
@@ -957,6 +972,7 @@ bool XmlDataLayer::invoiceInsertData(InvoiceData& oi_invData, int type) {
 	QDomElement products;
 	products = doc.createElement("products");
 	products.setAttribute("discount", sett().numberToString(oi_invData.discount));
+    products.setAttribute("productsCount", sett().numberToString(oi_invData.products.size()));
 
 	QMap<int, ProductData>::const_iterator i = oi_invData.products.constBegin();
 	int abc = 0;

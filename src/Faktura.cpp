@@ -469,24 +469,29 @@ void Faktura::getData(InvoiceData invData) {
 
     // lp, nazwa, kod, pkwiu, ilosc, jm, rabat, cena jm., netto, vat, brutto
 	ProductData product;
+    int i = 0;
 	foreach (product, invData.products) {
 		qDebug() << product.name;
-		/*
-		product.setId(tableTow->item(i, 0)->text());
-        product.setName(tableTow->item(i, 1)->text());
-        product.setCode(tableTow->item(i, 2)->text());
-        product.setPkwiu(tableTow->item(i, 3)->text());
-        product.setQuantity(tableTow->item(i, 4)->text());
-        product.setQuanType(tableTow->item(i, 5)->text());
-        product.setDiscount(tableTow->item(i, 6)->text());
-        product.setPrice(tableTow->item(i, 7)->text());
-        product.setNett(tableTow->item(i, 8)->text());
-        product.setVat(tableTow->item(i, 9)->text());
-        product.setGross(tableTow->item(i, 10)->text());
-        */
+        MainWindow::insertRow(tableTow, i);
+
+        tableTow->item(i, 0)->setText(sett().numberToString(product.getId()));
+        tableTow->item(i, 1)->setText(product.getName());
+        tableTow->item(i, 2)->setText(product.getCode());
+        tableTow->item(i, 3)->setText(product.getPkwiu());
+        tableTow->item(i, 4)->setText(sett().numberToString(product.getQuantity()));
+        tableTow->item(i, 5)->setText(product.getQuantityType());
+        tableTow->item(i, 6)->setText(sett().numberToString(product.getDiscount()));
+        tableTow->item(i, 7)->setText(sett().numberToString(product.getPrice()));
+        tableTow->item(i, 8)->setText(sett().numberToString(product.getNett()));
+        tableTow->item(i, 9)->setText(sett().numberToString(product.getVat()));
+        tableTow->item(i, 10)->setText(sett().numberToString(product.getGross()));
+
+        ++i;
     }
 
+    tableTow->setRowCount(invData.products.size());
     additEdit->setText(invData.additText);
+    platCombo->setCurrentText(invData.paymentType);
     // invData.paymentType = platCombo->currentText();
     liabDate->setDate(invData.liabDate);
     // invData.currencyType = currCombo->currentText();
